@@ -3,6 +3,13 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
+import ElementUI from 'element-ui'
+import 'element-ui/lib/theme-chalk/index.css';
+import global from "@/static/js/global"//全局方法
+
+
+Vue.use(ElementUI)
+Vue.use(global)
 
 Vue.config.productionTip = false
 

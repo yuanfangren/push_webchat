@@ -1,7 +1,7 @@
 <template>
 	<div>
 		<div class="logo-msg">
-			<div><img src="../assets/logo.png"></div>
+			<div><img src="../static/logo.png"></div>
 			<div >{{msg}}</div>
 		</div>
 		<div class="content">
@@ -23,6 +23,6 @@ export default {
 </script>
 
 <style scoped>
-@import '../assets/css/common.css';
+@import '../static/css/common.css';
  
 </style>

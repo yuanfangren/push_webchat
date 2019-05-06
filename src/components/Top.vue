@@ -4,6 +4,7 @@
 		 <div class="top">
 			<div class="top-item top-item-left"><span>Push_Webchat</span></div>
 			<router-link to="/login"><div class="top-item top-item-right" ><span>注册&登入</span></div></router-link>
+			<router-link to="/user/list" v-if="isAdmin"><div class="top-item top-item-right" ><span>用户</span></div></router-link>
 			<router-link to="/api"><div class="top-item top-item-right" ><span>API</span></div></router-link>
 			<router-link to="/home"><div class="top-item top-item-right" ><span>首页</span></div></router-link>
 		</div>
@@ -17,7 +18,8 @@ export default {
   name: 'top',
   data () {
     return {
-      msg: 'top'
+      msg: 'top',
+      isAdmin:true,
     }
   },
   methods:{
@@ -34,7 +36,6 @@ export default {
     padding-top: 10px;
 }
 .top{
-
 	max-width:900px;
 	position:relative;
 	margin:0 auto;
