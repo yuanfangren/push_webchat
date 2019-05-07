@@ -17,10 +17,12 @@ export default {
    padding:0;
    margin:0;
    border:0;
+   height:100%;
 }
 body,html{
 	padding:0;
    margin:0;
    border:0;
+   height:100%;
 }
 </style>

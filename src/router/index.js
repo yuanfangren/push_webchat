@@ -37,6 +37,29 @@ export default new Router({
 	      component: resolve => {
 	        require(['@/components/user/list'], resolve)
 	      }
+	    } ,
+	    {
+	      path: '/channel',
+	      name: '通道管理',
+	      component: resolve => {
+	        require(['@/components/channel/channel'], resolve)
+	      },
+	      children:[
+	        {
+			      path: '/channel/list',
+			      name: '通道列表',
+			     component: resolve => {
+			        require(['@/components/channel/list'], resolve)
+			      },
+			 },
+	      	 {
+			      path: '/channel/add',
+			      name: '新增通道',
+			     component: resolve => {
+			        require(['@/components/channel/add'], resolve)
+			      },
+			 },
+	      ]
 	    } 
       ]
     }

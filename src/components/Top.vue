@@ -1,10 +1,11 @@
 <template>
-	<div class="all">
+	<div class="all bgcolor">
 		<div class="top_all">
 		 <div class="top">
 			<div class="top-item top-item-left"><span>Push_Webchat</span></div>
 			<router-link to="/login"><div class="top-item top-item-right" ><span>注册&登入</span></div></router-link>
 			<router-link to="/user/list" v-if="isAdmin"><div class="top-item top-item-right" ><span>用户</span></div></router-link>
+			<router-link to="/channel" v-if="isLogin"><div class="top-item top-item-right" ><span>通道</span></div></router-link>
 			<router-link to="/api"><div class="top-item top-item-right" ><span>API</span></div></router-link>
 			<router-link to="/home"><div class="top-item top-item-right" ><span>首页</span></div></router-link>
 		</div>
@@ -20,6 +21,7 @@ export default {
     return {
       msg: 'top',
       isAdmin:true,
+      isLogin:true
     }
   },
   methods:{
@@ -29,6 +31,11 @@ export default {
 </script>
 
 <style scoped>
+.bgcolor{
+	    background-color: #f7f5f6;
+	    font-family: Helvetica Neue,Helvetica Arial sans-serif,Hiragino Sans GB,STHeitiSC-Light,Microsoft YaHei;
+	    height:100%;
+}
 .top_all{
     background: #656f7f;
     height: 40px;
