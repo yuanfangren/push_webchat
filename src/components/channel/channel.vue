@@ -2,18 +2,21 @@
 	<div class="content">
 		 <h2>通道管理</h2>
 		 <div class="page">
-		 	 <channelList v-if="comlist"></channelList>
-		 	 <channelAdd v-if="comadd" @listenadd="getaddmsg"></channelAdd>
+		 	 <channel-list v-if="comlist" @listenadd="addchannel"></channel-list>
+		 	 <channel-add v-if="comadd"   @listenlist="listchannel"></channel-add>
 		 </div> 
 		 
 	</div>
 </template>
 
 <script>
-import channelList from "./list.vue"
-import channelAdd from "./add.vue"
+import ChannelList from "./list.vue"
+import ChannelAdd from "./add.vue"
 export default {
-   components: {channelList,channelAdd},
+   components: {
+      "channel-list":ChannelList,
+      "channel-add":ChannelAdd
+   },
 
    data () {
     return {
@@ -22,12 +25,14 @@ export default {
     }
   },
   methods:{
-  	 getaddmsg(data){
-  	 	console.log(2222);
-  	 	console.log(data);
-  	 	this.comadd= data;
-  	 	this.comlist= !data;
-  	 }
+  	 addchannel(data){
+    	 	this.comadd= data;
+  	 	  this.comlist= !data;
+  	 },
+     listchannel(data){
+        this.comadd= !data;
+        this.comlist= data;
+     }
   }
 }
 </script>

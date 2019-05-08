@@ -1,6 +1,6 @@
 <template>
-	<div class="">
-		 
+	<div class="">	
+		 	<div class="msg">还没有可用通道呢,<span class="add-channel-no" @click="addchannel">新增通道</span></div>
 		 	 <ul>
 			 	<li>
 			 		<span class="channel">12075 okash 催收</span>
@@ -26,18 +26,16 @@
 
 <script>
 export default {
-
-   data () {
+    data () {
     return {
-       flag : true,
+
+        flag : true,//传递给父组件用来新增组件用的
     }
   },
   methods:{
   	addchannel(){
-  		console.log(12);
-  		this.$emit("listenadd",this.flag);
-  		console.log(121);
-  	}
+   		this.$emit("listenadd",this.flag);
+   	}
   }
 }
 </script>
@@ -51,6 +49,16 @@ export default {
 }
 a {  
 	text-decoration:none;
+}
+.msg{
+	    background-color: #edf6fd;
+    color: #43a3e5;
+    -webkit-box-shadow: 0 2px #d6ebfa;
+    box-shadow: 0 2px #d6ebfa;
+        padding: 10px;
+    border-radius: 2px;
+    border: none;
+    font-size:18px;
 }
  
 li{
@@ -66,7 +74,7 @@ li{
 	float:left;
 	color: #ff6c9d;
 }
-.add-channel:hover,.set:hover,.sendmsg:hover,.channel:hover{
+.add-channel-no:hover,.add-channel:hover,.set:hover,.sendmsg:hover,.channel:hover{
 	color: #ff206a;
 }
 .set{
@@ -82,6 +90,14 @@ li{
 }
 .add-channel{
 	font-size:16px;
+	color:#aaa;
+	    text-align: left;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    cursor:pointer;
+ }
+ .add-channel-no{
+	font-size:20px;
 	color:#aaa;
 	    text-align: left;
     margin-top: 20px;
