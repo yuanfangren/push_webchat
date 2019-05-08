@@ -31,13 +31,13 @@ export default new Router({
 	      name: 'Login',
 	      component: Login
 	    } ,
-	    {
+	  /*  {
 	      path: '/user/list',
 	      name: '用户管理',
 	      component: resolve => {
 	        require(['@/components/user/list'], resolve)
 	      }
-	    } ,
+	    } ,*/
 	    {
 	      path: '/channel',
 	      name: '通道管理',

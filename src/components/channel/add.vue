@@ -32,15 +32,25 @@ export default {
             this.errorMessage("通道名称不能为空");
             return;
         }
+        if("" == this.channelemail){
+            this.errorMessage("Email不能为空");
+            return;
+        }
+        let  re = /^[0-9A-Za-z][\.-_0-9A-Za-z]*@[0-9A-Za-z]+(?:\.[0-9A-Za-z]+)+$/;
+        if(!re.test(this.channelemail)){
+           this.errorMessage("Email格式不正确");
+           return;
+        } 
         axios.post(this.$api.addChannel, {
             name:this.channelname,
             email:this.channelemail,
              
          }).then(res => {
-             console.log(res);
-             if(res.status == 200){
-                  if(res.data.status == 0){
-                      
+              if(res.status == 200){
+                   if(res.data.status == 0){
+                       this.returnlist();
+                  }else{
+                    this.errorMessage(res.data.msg);
                   }
              }
              

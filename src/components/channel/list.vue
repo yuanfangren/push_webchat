@@ -1,41 +1,69 @@
 <template>
 	<div class="">	
-		 	<div class="msg">还没有可用通道呢,<span class="add-channel-no" @click="addchannel">新增通道</span></div>
-		 	 <ul>
-			 	<li>
-			 		<span class="channel">12075 okash 催收</span>
-			 		<span class="sendmsg">发送消息</span>
-			 		<span class="set">设置</span>
+		 	<div v-if="!haschannel" class="msg">还没有可用通道呢,<span class="add-channel-no" @click="addchannel"><i class="el-icon-circle-plus"></i>新增通道</span></div>
+		 	 <ul v-if="haschannel">
+			 	<li v-for="(channel,index) of channellist" :key="channel.id">
+			 		<span class="channel" @click="editchannel(channel.id)">{{channel.id}} {{channel.name}}</span>
+			 		<span class="sendmsg" @click="sendmsg(channel.id)"><i class="el-icon-s-promotion"></i>发送消息</span> 
+			 		<span class="set" @click="editchannel(channel.id)"><i class="el-icon-setting"></i>设置</span>
 			 	</li>
-			 	<li>
-			 		<span class="channel">12075 okash 催收</span>
-			 		<span class="sendmsg">发送消息</span>
-			 		<span class="set">设置</span>
-			 	</li>
-			 	<li>
-			 		<span class="channel">12075 okash 催收</span>
-			 		<span class="sendmsg">发送消息</span>
-			 		<span class="set">设置</span>
-			 	</li>
+			 	 
 			 </ul>
- 			 <div class="add-channel" @click="addchannel">新增通道</div> 
-		 
+ 			 <div class="add-channel" @click="addchannel"><i class="el-icon-circle-plus"></i>新增通道</div> 
+ 		 
 		 
 	</div>
 </template>
 
 <script>
+import axios from "axios";
+
 export default {
     data () {
     return {
-
         flag : true,//传递给父组件用来新增组件用的
+        channellist:[],
+        haschannel:true,
+        time:"",
+       
+
     }
   },
+  
+   
   methods:{
+  sendmsg(id){//跳转到发送消息页面
+      this.$emit("listensend",this.flag,id);
+    },
+  	editchannel(id){
+    	this.$emit("listenedit",this.flag,id);
+   	},
   	addchannel(){
    		this.$emit("listenadd",this.flag);
+   	},
+   	getChannel(){
+
+   		axios.post(this.$api.getChannel, {
+            
+         }).then(res => {
+               if(res.status == 200){
+                   if(res.data.status == 0){
+                   		if(res.data.data.length>0){
+                   			this.haschannel = true;
+                   		}else{
+                   			this.haschannel = false;
+                   		}
+                   		this.channellist = res.data.data;
+                  }
+             }
+             
+        }).catch(error => {
+            this.errorMessage("请求失败");
+        });
    	}
+  },
+  created(){
+  		this.getChannel();
   }
 }
 </script>
@@ -98,7 +126,7 @@ li{
  }
  .add-channel-no{
 	font-size:20px;
-	color:#aaa;
+	color: #ff6c9d;
 	    text-align: left;
     margin-top: 20px;
     margin-bottom: 20px;

@@ -2,15 +2,15 @@
 	<div class="all bgcolor">
 		<div class="top_all">
 		 <div class="top">
-			<div class="top-item top-item-left"><span>Push_Webchat</span></div>
+			<div class="top-item top-item-left"><span>Push_Wechat</span></div>
 			<router-link to="/login"><div class="top-item top-item-right" ><span>注册&登入</span></div></router-link>
-			<router-link to="/user/list" v-if="isAdmin"><div class="top-item top-item-right" ><span>用户</span></div></router-link>
-			<router-link to="/channel" v-if="isLogin"><div class="top-item top-item-right" ><span>通道</span></div></router-link>
-			<router-link to="/api"><div class="top-item top-item-right" ><span>API</span></div></router-link>
+			<!-- <router-link to="/user/list" v-if="isAdmin"><div class="top-item top-item-right" ><span>用户</span></div></router-link> -->
+			<div class="top-item top-item-right" @click="channelRouter" v-if="isLogin"><span>通道</span></div>
+ 			<router-link to="/api"><div class="top-item top-item-right" ><span>API</span></div></router-link>
 			<router-link to="/home"><div class="top-item top-item-right" ><span>首页</span></div></router-link>
 		</div>
 		</div>
-		 <router-view/>  
+		 <router-view />  
 	</div>
 </template>
 
@@ -23,9 +23,11 @@ export default {
       isAdmin:true,
       isLogin:true
     }
-  },
+  }, 
   methods:{
-  	 
+  	 channelRouter(){
+  	 	 this.$router.push({path:"/channel",query:{t:+new Date()}});
+  	 }
   }
 }
 </script>
@@ -40,7 +42,7 @@ export default {
     background: #656f7f;
     height: 40px;
     line-height: 40px;
-    padding-top: 10px;
+    
 }
 .top{
 	max-width:900px;
