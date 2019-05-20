@@ -13,7 +13,7 @@
 		 <div class="send-title">SubscribedMessage</div>
 		 <div class="one-div">
 		 	<div class="title color-text"">API地址</div>
-		 	<div class="text  "><span class="color-l">https://pushbear.ftqq.com/sub</span></div>
+		 	<div class="text  "><span class="color-l">https://push.honeywen.com/send</span></div>
 		 		<div class="claer"></div>
 		 </div>
 		 <div class="one-div">
