@@ -19,6 +19,9 @@
       <img :src="imgurl" alt="">
     </div>
     <div class="edit-show-msg">可以通过「订阅消息API」发送微信给所有扫描过此二维码的人(共<span v-model="number"></span>人)</div>
+    <div>
+      {{ subscribeList }}
+    </div>
 	</div>
 </template>
 
@@ -35,7 +38,8 @@ export default {
        isforbidden:0,//是否禁用 否
        oldname:"",
        number:"",//订阅的人数
-       imgurl: ""
+       imgurl: "",
+       subscribeList: []
     }
   },
   watch:{
