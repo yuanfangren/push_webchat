@@ -15,7 +15,9 @@
       <el-button @click="deleteChannel" size="medium" class="return-list">删除通道</el-button>
       <el-button @click="sendmsg" size="medium" type="primary" class="return-list">发送消息</el-button> 
     </div>
-    <div class="msg-edit-channel">本通道的订阅二维码</div>
+    <div class="msg-edit-channel">本通道的订阅二维码
+      <img :src="imgurl" alt="">
+    </div>
     <div class="edit-show-msg">可以通过「订阅消息API」发送微信给所有扫描过此二维码的人(共<span v-model="number"></span>人)</div>
 	</div>
 </template>
@@ -33,13 +35,14 @@ export default {
        isforbidden:0,//是否禁用 否
        oldname:"",
        number:"",//订阅的人数
+       imgurl: ""
     }
   },
   watch:{
       channelid: {
         handler:function(newName, oldName) {
             this.cid = newName;
-      　　  this.getChannelById(newName);
+      　　   this.getChannelById(newName);
     　　},
     　　immediate: true
       },
@@ -87,6 +90,7 @@ export default {
                        this.channelname = res.data.data.name;
                        this.oldname = res.data.data.name;
                        this.channelemail = res.data.data.email;
+                       this.imgurl = res.data.data.qrcodeUrl;
                   }else{
                     this.errorMessage(res.data.msg);
                   }

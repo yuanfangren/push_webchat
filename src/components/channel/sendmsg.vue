@@ -6,33 +6,33 @@
 		 	<div class="claer"></div>
 		 </div>
 		 <div class="one-div">
-		 	<div class="title color-text"">SendKey</div>
-		 	<div class="text " ><span class="color-l">{{sendkey}}</span></div>
+		 	<div class="title color-text">SendKey</div>
+		 	<div class="text " ><span class="color-l">{{sendKey}}</span></div>
 		 		<div class="claer"></div>
 		 </div>
 		 <div class="send-title">SubscribedMessage</div>
 		 <div class="one-div">
-		 	<div class="title color-text"">API地址</div>
+		 	<div class="title color-text">API地址</div>
 		 	<div class="text  "><span class="color-l">https://push.honeywen.com/send</span></div>
 		 		<div class="claer"></div>
 		 </div>
 		 <div class="one-div">
-		 	<div class="title color-text"">说明</div>
+		 	<div class="title color-text">说明</div>
 		 	<div class="color-text text">订阅消息将发送给所有扫描过本通道订阅二维码的用户，只支持微信，不支持短信</div>
 		 		<div class="claer"></div>
 		 </div>
 		 <div class="one-div">
-		 	<div class="title color-text">sendkey*</div>
+		 	<div class="title color-text">sendKey*</div>
 		 	<div class="text color-common">通道的SendKey，必填</div>
 		 	<div class="claer"></div>
 		 </div>
 		 <div class="one-div">
-		 	<div class="title color-text">text*</div>
+		 	<div class="title color-text">title*</div>
 		 	<div class="text color-common">标题，必填。不超过80个字</div>
 		 	<div class="claer"></div>
 		 </div>
 		 <div class="one-div">
-		 	<div class="title color-text">desp</div>
+		 	<div class="title color-text">content</div>
 		 	<div class="text color-common">长文本内容，选填。用户通过点击短信里的链接，打开浏览器阅读。支持Markdown语法，不超过64K</div>
 		 	<div class="claer"></div>
 		 </div>
@@ -43,11 +43,11 @@
 		 		<div class="form-div"  v-if="open">
 		 		<div class="open-form-div">
 		 			<div class="add-channel-font">通道SendKey</div>
-					<el-input placeholder="通道的Sendkey，必填" v-model="sendkey"> </el-input>
+					<el-input placeholder="通道的SendKey，必填" v-model="sendKey"> </el-input>
 		 		</div>
 		 		<div  class="open-form-div">
 		 			<div class="add-channel-font">消息标题</div>
-					<el-input placeholder="消息标题，80字以内，必填"  > </el-input>
+					<el-input placeholder="消息标题，80字以内，必填"  v-model="title"> </el-input>
 		 		</div>
 		 		<div   class="open-form-div">
 		 			<div class="add-channel-font">消息长内容</div>
@@ -58,7 +58,7 @@
  					<el-input type="textarea" :rows="5" placeholder="请求串" v-model="request">  </el-input>
 		 		</div>
 		 		<div  class="open-form-div">
-		 			<el-button  type="danger" size="small" >发送测试</el-button>
+		 			<el-button  type="danger" size="small" @click="sendMsg">发送测试</el-button>
 		 			<el-button    size="small" @click="closefrom" >收起测试表单</el-button>
 		 		</div>
 		 		<div  class="open-form-div">
@@ -80,11 +80,12 @@ export default {
   data () {
     return {
        cid:"",
-       open:false,
+			 open:false,
+			 title: "",
        content:"",
-       request:'{ "sendkey": "","text": "","desp": ""}',
+       request: '{"sendKey": "", "title":"", "content": ""}',
        response:"",
-       sendkey:"",
+       sendKey:"",
        channelname:"",//通道名称
      }
   },
@@ -95,7 +96,7 @@ export default {
        　　  this.getChannelById(newName);
     　　},
     　　immediate: true
-      },
+			}
        
   },
   methods:{
@@ -112,7 +113,7 @@ export default {
                if(res.status == 200){
                    if(res.data.status == 0){
                        this.channelname = res.data.data.name;
-                        this.sendkey = res.data.data.sendkey;
+                        this.sendKey = res.data.data.sendKey;
                   }else{
                     this.errorMessage(res.data.msg);
                   }
@@ -122,7 +123,17 @@ export default {
             this.errorMessage("请求失败");
         });
      },
-  }
+	},
+	sendMsg: function() {
+		console.log("send msg");
+		axios.get(this.$api.send, {
+			sendKey: this.sendKey,
+			title: this.title,
+			content: this.content
+		}).then(res => {
+			
+		});
+	}
 }
 </script>
 
