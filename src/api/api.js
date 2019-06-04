@@ -10,7 +10,8 @@ const api = {
 	getChannel:"/api/channel/getChannel",//获取通道列表(通过用户id)
 	getChannelById:"/api/channel/getChannelById",//获取通道列表(通过通道ID)
 	editChannel:"/api/channel/editChannel",//更新通道
-	deleteChannelById:"/api/channel/deleteChannelById",//删除通道
+	deleteChannelById:"/api/channel/deleteChannelById",//删除通道,
+	send: "/send" // 发送消息
 }
 
 export default api;
