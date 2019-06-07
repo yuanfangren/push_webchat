@@ -136,15 +136,17 @@ export default {
         });
     },
     sendMsg: function() {
-      console.log("send msg");
-      axios.get(this.$api.send, {
+      console.log("send msg", this.sendKey, this.title, this.content);
+      let param = {
+        params: {
           sendKey: this.sendKey,
           title: this.title,
           content: this.content
-        })
-        .then(res => {
-					console.log("end send", res);
-				});
+        }
+      };
+      axios.post(this.$api.send, param).then(res => {
+        console.log("end send", res);
+      });
     }
   }
 };
