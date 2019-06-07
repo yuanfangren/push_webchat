@@ -144,7 +144,7 @@ export default {
           content: this.content
         }
       };
-      axios.post(this.$api.send, param).then(res => {
+      axios.get(this.$api.send, param).then(res => {
         console.log("end send", res);
       });
     }
