@@ -10,11 +10,6 @@ Vue.use(Router)
 
 export default new Router({
   routes: [
-  {
-      	path:'/top',
-      	 name: 'RealTop',
-      	component: Top
-      },
     {
       
       path: '/',
@@ -24,9 +19,9 @@ export default new Router({
       redirect:to =>{
       	const{hash,params,query}  = to;
     	if(query.isLogin === true){
-  			return {path:'/channel'}
+  			return {path:'/channel',query:{t:query.t}}
       	}else{
-      		return {path:'/home'}
+      		return {path:'/home',query:{t:query.t}}
       	}
       },
       children:[
@@ -45,13 +40,6 @@ export default new Router({
 	      name: 'Login',
 	      component: Login
 	    } ,
-	  /*  {
-	      path: '/user/list',
-	      name: '用户管理',
-	      component: resolve => {
-	        require(['@/components/user/list'], resolve)
-	      }
-	    } ,*/
 	    {
 	      path: '/channel',
 	      name: '通道管理',

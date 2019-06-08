@@ -3,7 +3,8 @@
 		<div class="top_all">
 		 <div class="top">
 			<div class="top-item top-item-left"><span>Push_Wechat</span></div>
-			<router-link to="/login"><div class="top-item top-item-right" ><span>注册&登入</span></div></router-link>
+			<div class="top-item top-item-right" @click="logout" v-if="this.isLogin_all"><span>退出</span></div>
+			<router-link to="/login"><div class="top-item top-item-right" v-if="!this.isLogin_all"><span>注册&登入</span></div></router-link>
  			<div class="top-item top-item-right" @click="channelRouter" v-if="this.isLogin_all"><span>通道</span></div>
  			<router-link to="/api"><div class="top-item top-item-right" ><span>API</span></div></router-link>
 			<router-link to="/home"><div class="top-item top-item-right" ><span>首页</span></div></router-link>
@@ -19,26 +20,37 @@ export default {
   data () {
     return {
       msg: 'top',
-      isLogin:false,
      }
   }, 
   methods:{
   	 channelRouter(){
    	 	 this.$router.push({path:"/channel",query:{t:+new Date()}});
+  	 },
+  	 logout(){
+  	 	console.log("====");
+  	 	sessionStorage.setItem("isLogin_all",false);
+  	 	this.isLogin_all = false;
+		this.$router.push({path:"/",query:{t:+new Date(),isLogin:false}});
   	 }
   },
  watch: {
 　　// 利用watch方法检测路由变化：
 　　'$route': function (to, from) {	
- 		if(sessionStorage.getItem("isLogin_all")){
+ 		if(sessionStorage.getItem("isLogin_all")  == "true"){
+ 			console.log("1");
 			 this.isLogin_all = true;
+		}else{
+			console.log("2");
+			this.isLogin_all = false;
 		}
 		 
 　　}
   },
   created(){
-  	if(sessionStorage.getItem("isLogin_all")){
+   	if(sessionStorage.getItem("isLogin_all") == "true"){
 			 this.isLogin_all = true;
+		}else{
+			this.isLogin_all = false;
 		}
   }
  
