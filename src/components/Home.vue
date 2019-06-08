@@ -18,7 +18,15 @@ export default {
       msg: '基于微信模板的一对多消息送达服务',
       content:"这是首页内容"
     }
-  }
+  },
+  created(){
+     
+  },
+   mounted() {
+        if(sessionStorage.getItem("isLogin_all")){
+            this.isLogin_all=true;
+        }
+    }
 }
 </script>
 

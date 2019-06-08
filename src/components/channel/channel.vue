@@ -50,8 +50,7 @@ export default {
   },
   methods:{
      sendchannel(data,id){
-     console.log(id+"=====================");
-        this.cid = id;
+         this.cid = id;
         this.comadd= !data;
         this.comlist= !data;
         this.comedit= !data;
@@ -78,7 +77,7 @@ export default {
      }
   },
   created(){
-      
+  
   }
 }
 </script>

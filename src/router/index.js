@@ -10,11 +10,25 @@ Vue.use(Router)
 
 export default new Router({
   routes: [
+  {
+      	path:'/top',
+      	 name: 'RealTop',
+      	component: Top
+      },
     {
+      
       path: '/',
       name: 'Top',
       component: Top,
-      redirect:"/home",
+      //redirect:"/home",
+      redirect:to =>{
+      	const{hash,params,query}  = to;
+    	if(query.isLogin === true){
+  			return {path:'/channel'}
+      	}else{
+      		return {path:'/home'}
+      	}
+      },
       children:[
       	 {
 	      path: '/api',
