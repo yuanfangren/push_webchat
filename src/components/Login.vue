@@ -29,10 +29,8 @@ export default {
 	methods: {
 		timerCheck(){
  			var that = this;
-			//假设成功后，跳转到通道页面
-			sessionStorage.setItem("isLogin_all",true);
-			this.$router.push({path:"/",query:{t:+new Date(),isLogin:true}});
- 			/**if(this.logintoken !=''){
+			
+ 			if(this.logintoken !=''){
 				axios.get(this.$api.getCheck, {
 					params:{
 						logintoken:that.logintoken
@@ -43,7 +41,11 @@ export default {
 		          if(res.data.status == 0){
 		          	 if(res.data.data ){
 		          	 	clearInterval(this.timer);//登录
-		          	 	//登录跳转到通道
+						   //登录跳转到通道
+						   //假设成功后，跳转到通道页面
+							sessionStorage.setItem("isLogin_all",true);
+							sessionStorage.setItem("token", that.logintoken);
+							this.$router.push({path:"/",query:{t:+new Date(),isLogin:true}});
 
 		          	 }
 		          }
@@ -51,7 +53,7 @@ export default {
 		      }).catch(error => {
 		          this.errorMessage("请求失败");
 		      });
-			}*/
+			}
 		}	
 	},
 	 
