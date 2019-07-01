@@ -44,6 +44,7 @@ export default {
    	getChannel(){
 
    		axios.post(this.$api.getChannel, {
+			   token: sessionStorage.getItem("token")
             
          }).then(res => {
                if(res.status == 200){
